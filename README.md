@@ -50,7 +50,7 @@ YAZILIM ICIN EKLENTILER
 
 - Alarm 
 
-
+- Ses ile konuşma emir verme (Amozon alexa veya google home gibi)
 
 SERVER
 
