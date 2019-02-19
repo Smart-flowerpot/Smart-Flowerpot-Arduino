@@ -4,7 +4,7 @@ DONANIM
 
 - WiFi ile Json nesnesi gonderilmesi
 
-- Toprak icin isi ve nem sensoru
+- Toprak için ısı ve nem sensörü
 
 https://www.robotistan.com/toprak-nemi-algilama-sensoru?query=toprak%20nem%20&
 
@@ -12,7 +12,7 @@ https://www.robotistan.com/su-gecirmez-ds18b20-dijital-isi-sensoru?query=su%20ge
 
 https://www.youtube.com/watch?v=gmkgLBfIw7w&ab_channel=TeknoButon
 
-- Su pompasi ve basinc ve akis sensoru 
+- Su pompası ve basınç ve akış sensörü 
 
 https://www.roboshop.com.tr/mini-su-dalgic-pompasi?search=su%20pompasi
 
@@ -22,29 +22,29 @@ https://www.robotsepeti.com/su-akis-ve-hidrolik-basinc-sensoru
 
 https://www.youtube.com/watch?v=wB4gwXb9anI&ab_channel=ArduinoHaber
 
-DONANIM ICIN EKLENTILER
+DONANIM İÇİN EKLENTİLER
 
 - Led
 
-- Mini gunes paneli
+- Mini güneş paneli
 
-- Yagmur sensoru
+- Yağmur sensörü
 
 
 
 YAZILIM
 
-- Json nesnelerinin sunucudan cekilmesi
+- Json nesnelerinin sunucudan çekilmesi
 
 - Arayuz
 
-- Verilerin islenmesi
+- Verilerin işlenmesi
 
-** Android icin hem donanim hem de sunucu baglantisi
+** Android icin hem donanım hem de sunucu bağlantısı
 
 YAZILIM ICIN EKLENTILER
 
-- Oyunlastirma ( Kullanici tarafindan yapilan/ yapilmayan eylemlerin odullendirilmesi/ cezalandirilmasi )
+- Oyunlaştırma ( Kullanici tarafindan yapilan/ yapilmayan eylemlerin odullendirilmesi/ cezalandirilmasi )
 
 - Analitik inceleme ( Cizelge olusturma vs.)
 
@@ -54,7 +54,7 @@ YAZILIM ICIN EKLENTILER
 
 SERVER
 
-- Json verilerinin saklanmasi
+- Json verilerinin saklanması
 
 
 
