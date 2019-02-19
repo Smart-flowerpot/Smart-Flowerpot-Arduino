@@ -14,9 +14,9 @@ int temperature_air = 0;  // celcius
 int frostbite = 0;   // çiğ oluşma noktası yüzde
 int light = 0;
 
-const char* host = "omercalisma123.xyz";
+const char* host = "eventsappp.live";
 String path_post = "";
-const char* path_get = "/SmartFlowerpot/get_plant.php?id=1";
+String path_get = "";
 
 int DHT11_pin = 2; // DHT11_pin olarak Dijital 2'yi belirliyoruz.
 int suMotoru_pin = 15;
@@ -40,7 +40,11 @@ void setup()
  
 void loop()
 {
-  digitalWrite(suMotoru_pin , LOW);
+  if(status_water_engine == 1){
+    digitalWrite(suMotoru_pin , LOW);
+    status_water_engine = 0;  
+  }
+  
   DHT11_sensor.read(DHT11_pin);
   moisture_air = (int)DHT11_sensor.humidity;
   temperature_air = (int)DHT11_sensor.temperature; 
@@ -50,28 +54,63 @@ void loop()
   Serial.println(temperature_air);
   Serial.println(moisture_soil);
   Serial.println(frostbite);
-  
+ 
   path_post = String("/SmartFlowerpot/update_plant.php?plant_id=")+plant_id+"&light="+light+"&temperature="+temperature_air+"&moisture_air="+moisture_air+"&moisture_soil="+moisture_soil+"&frostbite="+frostbite+"&water="+status_water_engine+"&name="+plant_name+"&type="+plant_type;
-
+  path_get = String("/SmartFlowerpot/get_plant.php?id=")+plant_id;
+  
   WiFiClient client;
+
 
   Serial.printf("\n[Connecting to %s ... ", host);
   if (client.connect(host, 80))
   {
     Serial.println("connected]");
-
     Serial.println("[Sending a request]");
     client.print(String("POST ") + path_post + " HTTP/1.1\r\n" +
            "Host: " + host + "\r\n" + 
            "Connection: close\r\n\r\n");
 
-    Serial.println("[Response:]");
+    Serial.println("[Response post:]");
     while (client.connected() || client.available())
     {
       if (client.available())
       {
         String line = client.readStringUntil('\n');
         Serial.println(line);
+      }
+    }
+    
+    client.stop();
+    Serial.println("\n[Disconnected]");
+  }
+  else
+  {
+    Serial.println("connection failed!]");
+    client.stop();
+  }
+
+
+ Serial.printf("\n[Connecting to %s ... ", host);
+  if (client.connect(host, 80))
+  {
+    Serial.println("connected]");
+    Serial.println("[Response get:]");
+    client.print(String("GET ") + path_get + " HTTP/1.1\r\n" +
+           "Host: " + host + "\r\n" + 
+           "Connection: close\r\n\r\n");
+
+    Serial.println("[Response:]");
+  
+    while (client.connected() || client.available())
+    {
+      if (client.available())
+      {
+        String line = client.readStringUntil('\n');
+        Serial.println(line);
+        String w = line.substring(line.lastIndexOf(":")+2, line.length()-2);
+        if(w.equals("1")){
+          status_water_engine = 1;
+        }
       }
     }
     client.stop();
@@ -82,5 +121,6 @@ void loop()
     Serial.println("connection failed!]");
     client.stop();
   }
+  
   delay(5000);
 }
