@@ -61,6 +61,3 @@ SERVER
 
 ![alt text align="center"](https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/smartFlowerpot.jpg) 
 
-<div style="text-align:center"><img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/smartFlowerpot.jpg" alt="resim" /></div>
-
-
