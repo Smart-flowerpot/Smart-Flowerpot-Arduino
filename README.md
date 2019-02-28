@@ -50,7 +50,9 @@ YAZILIM ICIN EKLENTILER
 
 - Alarm 
 
-- Ses ile konuşma emir verme (Amozon alexa veya google home gibi)
+- Ses ile konuşma emir verme (Amozon alexa veya google home gibi
+
+https://www.instructables.com/id/How-to-use-a-Serial-Voice-Recognition-Module-Ardui/
 
 SERVER
 
