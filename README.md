@@ -59,6 +59,6 @@ SERVER
 - Json verilerinin saklanması
 
 
-![alt text](https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/smartFlowerpot.jpg)
+<h2 align="center"> ![alt text](https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/smartFlowerpot.jpg) </h2>
 
 
