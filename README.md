@@ -59,5 +59,8 @@ SERVER
 - Json verilerinin saklanması
 
 
-<center>![alt text](https://github.com/bekirberksenel/benzinIstasyonuOtomasyonu/blob/master/smartFlowerpot.png) </center>
+<div align="center">
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/smartFlowerpot.jpg" />
+</div>
+
 
