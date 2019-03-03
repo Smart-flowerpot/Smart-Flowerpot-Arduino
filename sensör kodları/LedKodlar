@@ -1,0 +1,457 @@
+
+#include "LedControl.h"
+
+LedControl LED = LedControl(A2, A3, A4, 1);
+
+#define bekle 250
+#define bekle1 100
+
+
+
+byte ah[8] = {
+  B00000000,
+  B00000100,
+  B01101110,
+  B00000100,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+//sola
+byte sola[8] = {
+  B00000000,
+  B00110011,
+  B00110011,
+  B00000000,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+//saga
+byte saga[8] = {
+  B00000000,
+  B11001100,
+  B11001100,
+  B00000000,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+
+
+
+// mutlu
+byte mutlu[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte mutlu1[8] = {
+  B00000000,
+  B00000000,
+  B01100110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte gozKirp1[8] = {
+  B00000000,
+  B00100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte gozKirp2[8] = {
+  B00000000,
+  B00000110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte gozKirp3[8] = {
+  B00000000,
+  B00000100,
+  B01100110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte gozKirp4[8] = {
+  B00000000,
+  B00000100,
+  B01101110,
+  B00000000,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+byte gozKirp5[8] = {
+  B00000000,
+  B00000100,
+  B01101110,
+  B00000100,
+  B00000000,
+  B01000010,
+  B00111100,
+  B00000000,
+};
+// normal
+byte durgun[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B00111100,
+  B00111100,
+  B00000000,
+};
+// uzgun
+byte uzgun[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+//agla1
+byte uzgun1[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000010,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+//agla2
+byte uzgun2[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000010,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+//agla3
+byte uzgun3[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B00111110,
+  B01000010,
+  B00000000,
+};
+//agla4
+byte uzgun4[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000000,
+};
+//agla5
+byte uzgun5[8] = {
+  B00000000,
+  B01100110,
+  B01100110,
+  B00000000,
+  B00000000,
+  B00111100,
+  B01000010,
+  B00000010,
+};
+
+
+
+#define ses_tesekkur 1
+#define ses_susadim 3
+#define ses_coksusadim 5
+#define ses_aglicamAma 7
+
+void setup() {
+
+
+
+
+
+  LED.shutdown(0, false);
+  LED.setIntensity(0, 2);
+  LED.clearDisplay(0);
+
+
+  Mutlu();
+  delay(500);
+  Saga();
+  delay(500);
+  Sola();
+  delay(500);
+  gozKirp();
+  delay(500);
+  logo();
+  delay(2000);
+
+
+
+
+
+void Saga() {
+  LED.setRow(0, 0, saga[0]);
+  LED.setRow(0, 1, saga[1]);
+  LED.setRow(0, 2, saga[2]);
+  LED.setRow(0, 3, saga[3]);
+  LED.setRow(0, 4, saga[4]);
+  LED.setRow(0, 5, saga[5]);
+  LED.setRow(0, 6, saga[6]);
+  LED.setRow(0, 7, saga[7]);
+  delay(bekle);
+}
+
+void Sola() {
+  LED.setRow(0, 0, sola[0]);
+  LED.setRow(0, 1, sola[1]);
+  LED.setRow(0, 2, sola[2]);
+  LED.setRow(0, 3, sola[3]);
+  LED.setRow(0, 4, sola[4]);
+  LED.setRow(0, 5, sola[5]);
+  LED.setRow(0, 6, sola[6]);
+  LED.setRow(0, 7, sola[7]);
+  delay(bekle);
+}
+
+
+void Uzgun() {
+  LED.setRow(0, 0, uzgun[0]);
+  LED.setRow(0, 1, uzgun[1]);
+  LED.setRow(0, 2, uzgun[2]);
+  LED.setRow(0, 3, uzgun[3]);
+  LED.setRow(0, 4, uzgun[4]);
+  LED.setRow(0, 5, uzgun[5]);
+  LED.setRow(0, 6, uzgun[6]);
+  LED.setRow(0, 7, uzgun[7]);
+  delay(bekle);
+}
+
+void Durgun() {
+  LED.setRow(0, 0, durgun[0]);
+  LED.setRow(0, 1, durgun[1]);
+  LED.setRow(0, 2, durgun[2]);
+  LED.setRow(0, 3, durgun[3]);
+  LED.setRow(0, 4, durgun[4]);
+  LED.setRow(0, 5, durgun[5]);
+  LED.setRow(0, 6, durgun[6]);
+  LED.setRow(0, 7, durgun[7]);
+  delay(bekle);
+}
+
+void Mutlu() {
+  LED.setRow(0, 0, mutlu[0]);
+  LED.setRow(0, 1, mutlu[1]);
+  LED.setRow(0, 2, mutlu[2]);
+  LED.setRow(0, 3, mutlu[3]);
+  LED.setRow(0, 4, mutlu[4]);
+  LED.setRow(0, 5, mutlu[5]);
+  LED.setRow(0, 6, mutlu[6]);
+  LED.setRow(0, 7, mutlu[7]);
+  delay(bekle);
+}
+
+void gozKirp() {
+  LED.setRow(0, 0, mutlu[0]);
+  LED.setRow(0, 1, mutlu[1]);
+  LED.setRow(0, 2, mutlu[2]);
+  LED.setRow(0, 3, mutlu[3]);
+  LED.setRow(0, 4, mutlu[4]);
+  LED.setRow(0, 5, mutlu[5]);
+  LED.setRow(0, 6, mutlu[6]);
+  LED.setRow(0, 7, mutlu[7]);
+  delay(bekle1 * 2);
+
+  LED.setRow(0, 0, mutlu1[0]);
+  LED.setRow(0, 1, mutlu1[1]);
+  LED.setRow(0, 2, mutlu1[2]);
+  LED.setRow(0, 3, mutlu1[3]);
+  LED.setRow(0, 4, mutlu1[4]);
+  LED.setRow(0, 5, mutlu1[5]);
+  LED.setRow(0, 6, mutlu1[6]);
+  LED.setRow(0, 7, mutlu1[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, mutlu[0]);
+  LED.setRow(0, 1, mutlu[1]);
+  LED.setRow(0, 2, mutlu[2]);
+  LED.setRow(0, 3, mutlu[3]);
+  LED.setRow(0, 4, mutlu[4]);
+  LED.setRow(0, 5, mutlu[5]);
+  LED.setRow(0, 6, mutlu[6]);
+  LED.setRow(0, 7, mutlu[7]);
+  delay(bekle1 * 2);
+
+  LED.setRow(0, 0, mutlu1[0]);
+  LED.setRow(0, 1, mutlu1[1]);
+  LED.setRow(0, 2, mutlu1[2]);
+  LED.setRow(0, 3, mutlu1[3]);
+  LED.setRow(0, 4, mutlu1[4]);
+  LED.setRow(0, 5, mutlu1[5]);
+  LED.setRow(0, 6, mutlu1[6]);
+  LED.setRow(0, 7, mutlu1[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, mutlu[0]);
+  LED.setRow(0, 1, mutlu[1]);
+  LED.setRow(0, 2, mutlu[2]);
+  LED.setRow(0, 3, mutlu[3]);
+  LED.setRow(0, 4, mutlu[4]);
+  LED.setRow(0, 5, mutlu[5]);
+  LED.setRow(0, 6, mutlu[6]);
+  LED.setRow(0, 7, mutlu[7]);
+  delay(bekle1 * 2);
+
+  LED.setRow(0, 0, gozKirp1[0]);
+  LED.setRow(0, 1, gozKirp1[1]);
+  LED.setRow(0, 2, gozKirp1[2]);
+  LED.setRow(0, 3, gozKirp1[3]);
+  LED.setRow(0, 4, gozKirp1[4]);
+  LED.setRow(0, 5, gozKirp1[5]);
+  LED.setRow(0, 6, gozKirp1[6]);
+  LED.setRow(0, 7, gozKirp1[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, gozKirp2[0]);
+  LED.setRow(0, 1, gozKirp2[1]);
+  LED.setRow(0, 2, gozKirp2[2]);
+  LED.setRow(0, 3, gozKirp2[3]);
+  LED.setRow(0, 4, gozKirp2[4]);
+  LED.setRow(0, 5, gozKirp2[5]);
+  LED.setRow(0, 6, gozKirp2[6]);
+  LED.setRow(0, 7, gozKirp2[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, gozKirp3[0]);
+  LED.setRow(0, 1, gozKirp3[1]);
+  LED.setRow(0, 2, gozKirp3[2]);
+  LED.setRow(0, 3, gozKirp3[3]);
+  LED.setRow(0, 4, gozKirp3[4]);
+  LED.setRow(0, 5, gozKirp3[5]);
+  LED.setRow(0, 6, gozKirp3[6]);
+  LED.setRow(0, 7, gozKirp3[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, gozKirp4[0]);
+  LED.setRow(0, 1, gozKirp4[1]);
+  LED.setRow(0, 2, gozKirp4[2]);
+  LED.setRow(0, 3, gozKirp4[3]);
+  LED.setRow(0, 4, gozKirp4[4]);
+  LED.setRow(0, 5, gozKirp4[5]);
+  LED.setRow(0, 6, gozKirp4[6]);
+  LED.setRow(0, 7, gozKirp4[7]);
+  delay(bekle1);
+
+  LED.setRow(0, 0, gozKirp5[0]);
+  LED.setRow(0, 1, gozKirp5[1]);
+  LED.setRow(0, 2, gozKirp5[2]);
+  LED.setRow(0, 3, gozKirp5[3]);
+  LED.setRow(0, 4, gozKirp5[4]);
+  LED.setRow(0, 5, gozKirp5[5]);
+  LED.setRow(0, 6, gozKirp5[6]);
+  LED.setRow(0, 7, gozKirp5[7]);
+  delay(bekle1);
+  delay(bekle1);
+}
+
+
+
+
+
+void agla() {
+  LED.setRow(0, 0, uzgun[0]);
+  LED.setRow(0, 1, uzgun[1]);
+  LED.setRow(0, 2, uzgun[2]);
+  LED.setRow(0, 3, uzgun[3]);
+  LED.setRow(0, 4, uzgun[4]);
+  LED.setRow(0, 5, uzgun[5]);
+  LED.setRow(0, 6, uzgun[6]);
+  LED.setRow(0, 7, uzgun[7]);
+  delay(bekle);
+
+  LED.setRow(0, 0, uzgun1[0]);
+  LED.setRow(0, 1, uzgun1[1]);
+  LED.setRow(0, 2, uzgun1[2]);
+  LED.setRow(0, 3, uzgun1[3]);
+  LED.setRow(0, 4, uzgun1[4]);
+  LED.setRow(0, 5, uzgun1[5]);
+  LED.setRow(0, 6, uzgun1[6]);
+  LED.setRow(0, 7, uzgun1[7]);
+  delay(bekle);
+
+  LED.setRow(0, 0, uzgun2[0]);
+  LED.setRow(0, 1, uzgun2[1]);
+  LED.setRow(0, 2, uzgun2[2]);
+  LED.setRow(0, 3, uzgun2[3]);
+  LED.setRow(0, 4, uzgun2[4]);
+  LED.setRow(0, 5, uzgun2[5]);
+  LED.setRow(0, 6, uzgun2[6]);
+  LED.setRow(0, 7, uzgun2[7]);
+  delay(bekle);
+
+  LED.setRow(0, 0, uzgun3[0]);
+  LED.setRow(0, 1, uzgun3[1]);
+  LED.setRow(0, 2, uzgun3[2]);
+  LED.setRow(0, 3, uzgun3[3]);
+  LED.setRow(0, 4, uzgun3[4]);
+  LED.setRow(0, 5, uzgun3[5]);
+  LED.setRow(0, 6, uzgun3[6]);
+  LED.setRow(0, 7, uzgun3[7]);
+  delay(bekle);
+  /*
+    LED.setRow(0, 0, uzgun4[0]);
+    LED.setRow(0, 1, uzgun4[1]);
+    LED.setRow(0, 2, uzgun4[2]);
+    LED.setRow(0, 3, uzgun4[3]);
+    LED.setRow(0, 4, uzgun4[4]);
+    LED.setRow(0, 5, uzgun4[5]);
+    LED.setRow(0, 6, uzgun4[6]);
+    LED.setRow(0, 7, uzgun4[7]);
+    delay(bekle);
+  */
+  LED.setRow(0, 0, uzgun5[0]);
+  LED.setRow(0, 1, uzgun5[1]);
+  LED.setRow(0, 2, uzgun5[2]);
+  LED.setRow(0, 3, uzgun5[3]);
+  LED.setRow(0, 4, uzgun5[4]);
+  LED.setRow(0, 5, uzgun5[5]);
+  LED.setRow(0, 6, uzgun5[6]);
+  LED.setRow(0, 7, uzgun5[7]);
+  delay(bekle);
+}
+
