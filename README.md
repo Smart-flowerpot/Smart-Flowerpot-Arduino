@@ -61,6 +61,8 @@ SERVER
 
 <div align="center">
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Overall Picture.png" />
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema2.png" />
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema3.png" />  
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
 
 </div>
