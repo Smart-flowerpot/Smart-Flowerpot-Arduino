@@ -1,7 +1,8 @@
 ﻿
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
 
-Smart Flowerpot Nedir ?
+<h1>Smart Flowerpot Nedir ?<h1>
+  <b>
 Smart Flowerpot, BIL496 Bitirme Projesi dersi “Ev Hayatını Kolaylaştıran Sistemler” konusu kapsamında 5 kişilik takımımızla birlikte geliştirdiğimiz projedir.
 Takım üyeleri :
 1. Ömer Faruk Kurular 141101039
