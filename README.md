@@ -1,12 +1,11 @@
-﻿
-<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
+img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
 
-<h1>Smart Flowerpot Nedir ?</h1>
+<h1>What Is Smart Flowerpot ?</h1>
 <br>
-Smart Flowerpot, BIL496 Bitirme Projesi dersi “Ev Hayatını Kolaylaştıran Sistemler” konusu kapsamında 5 kişilik takımımızla birlikte geliştirdiğimiz projedir.
+Smart Flowerpot is a project which has been designed within the course BIL496 Graduation Project under the topic of "Systems that makes house-life easier" by our team of 5 members. 
 <br>
 <br>
-<h3>Takım üyeleri :</h3>
+<h3>Team Members :</h3>
 <br>
 1. Ömer Faruk Kurular 141101039
 <br>
@@ -19,47 +18,51 @@ Smart Flowerpot, BIL496 Bitirme Projesi dersi “Ev Hayatını Kolaylaştıran S
 5. Orhan Onar 131101063
 <br>
 <br>
-Kullanıcının Android uygulaması üzerinden bitkisinin bulunduğu ortamdaki havanın anlık nem değerini, bitkisinin bulunduğu toprağın anlık nem değerini, ortamın anlık sıcaklık değerini ve buna benzer bilgileri kontrol edebildiği; aynı zamanda aplikasyon üzerinde tanımlı 73 adet bitki türünden istediği bitkiyi veya kendi bitkisini seçerek her bitki için önceden tanımlanmış optimal değerler üzerinden ortamdaki değerleri tanımlı verilerle kıyaslayan uygulamamız ile uyarı alabildiği ve aldığı uyarılara göre dilediği taktirde uzaktan kontrol ile tek tuşla sulama yapabildiği bir akıllı saksı sistemidir.
-Smart Flowerpot Uygulaması Nasıl Kullanılır ?
-Uygulama tamamiyle kullanıcı dostu ve basit bir arayüz kullanılarak tasarlanmıştır. Kullanıcı uygulamaya giriş yaptığında Home (Ana Sayfa) üzerinde “+” butonuna basarak önceden tanımlı 73 bitki türü içerisinden kendi bitkisini ekleyebilir. Bitki türlerinin önceden tanımlanmasının asıl amacı ilgili bitki türünün optimal değerlerinin önceden tanımlanmış olması ve gerekli değerlerin ortam koşullarınca sağlanmaması halinde kullanıcının uyarılabilmesidir. Kullanıcı bitkisini sisteme ekledikten sonra tekrar Home üzerinden bitkisinin bulunduğu butona basarak kendi bitkisine yönlendirilir. Böylece açılan sayfa üzerinden bitkisinin optimal değerlerini kontrol edebilir ve dilerse ”Water me” butonuna tıklayarak sulama işlemini gerçekleştirebilir. (Şekil 2)
+This is a system which allows the user to be aware of the momentary humidity, moisture of the solid which the plant grows in, the temperature of the environment etc.; also to choose a plant among 73 various ones, compare the momentary values to the optimal values 
+that have been obtained for each plant, and to be warned about the health of the plant under certain circumstances then act accordingly
+through remote access over the water engine by a button if wanted to.
+How To Use It ?
+Application has beeen designed over a friendly and simple interface. Clicking on the application will lead the user to HOME which has 
+a "+" button that allows the user to add his plant among the 73 pre-defined plants. After adding the plant to the system, the user is able to go back to the home through HOME, and clicking on that plant will allow the user to see the instantaneous values of it along with the option of watering it through "Water Me" button. Having optimal values of each plant, user will be warned under critical situations that threaten the health of the plant. (Figure 2)
 
-<h1>Smart Flowerpot Projesinde Neler Kullanıldı ?</h1>
+<h1>What Have Been Used In The Project Smart Flowerpot ?</h1>
 <br>
-<h3>Donanım</h3>
+<h3>Hardware</h3>
 <br>
-- Nodemcu iOT kartı
+- Nodemcu IoT 
 <br>
 - Arduino
 <br>
-- Blackboard
+- Breadboard
 <br>
-- Toprak nem sensörü
+- Soil moisture sensor
 <br>
-- Hava nem ısı sensörü
+- Humidity & temperature sensor
 <br>
-- Su motoru
+- Water Engine
 <br>
 - Buzzer
 <br>
-- Işık sensörü
+- Light Sensor
 <br>
 <br>
-<h3>Yazılım</h3>
+<h3>Software</h3>
 <br>
 - Android
 <br>
-- Mqtt server
+- MQTT Server
 <br>
 - Arduino
 <br>
-- Html
+- HTML
 <br>
-- Php
+- PHP
 <br>
 - Javascript
 <br>
-<h1>Smart Flowerpot Projesi Nasıl Çalışır ?</h1>
-Projenin çalışma prensibi alttaki şekilde detaylı olarak gösterilmiştir.
+<h1>How Does It Work ?</h1>
+Detailed as following;
+
 
 
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema1.png" />
