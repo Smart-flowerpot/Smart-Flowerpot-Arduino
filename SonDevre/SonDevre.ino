@@ -3,164 +3,6 @@
 #include <PubSubClient.h>;
 
 
-const char* ssid = "ETUNET-asistan";
-const char* password = "tobb1234";
-
-const int plant_id = 1;
-const String plant_name = "menekşe";
-const String plant_type = "aerhurasia";
-int status_water_engine = 0;
-int moisture_air = 0;   // yüzde olarak veriyor
-int moisture_soil = 0;  // 0-1024 arası (yüzdeye çevirildi)
-int temperature_air = 0;  // celcius
-int frostbite = 0;   // çiğ oluşma noktası yüzde
-int light = 0;
-unsigned long readTime;
-
-#define DHT11_pin 4 // DHT11_pin olarak Dijital 2'yi belirliyoruz.
-#define suMotoru_pin 15
-#define led 2  // internal led
-#define buz 5
-
-const char* mqttServer = "m24.cloudmqtt.com";
-const int mqttPort = 16309;
-const char* mqttUser = "cissktzx";
-const char* mqttPassword = "ETUpXfdiWfMO";
-
-dht11 DHT11_sensor; // DHT11_sensor adında bir DHT11 nesnesi oluşturduk.
-WiFiClient espClient;
-PubSubClient client(espClient);
-
-
-
-
-void setupWifi(){
- WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) 
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("");
-  Serial.println("WiFi connected"); 
-}
-
-void connectMqtt(){
-    while (!client.connected()) {
-    Serial.println("Connecting to MQTT...");
-    if (client.connect("ESP8266Client", mqttUser, mqttPassword )) {
-      Serial.println("connected");  
-    } else {
-      Serial.print("failed with state ");
-      Serial.print(client.state());
-      delay(2000);
-    }
-  }
- 
-  client.publish("test", "Hello from ESP8266");
-  client.subscribe("test");
-  client.subscribe("led");
-  client.subscribe("motor");
-}
-
-bool checkBound(int newValue, int prevValue, int maxDiff) {
-  return !isnan(newValue) &&
-         (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
-}
-
-void dhtRead(){
-  DHT11_sensor.read(DHT11_pin);
-  int new_moisture_air = (int)DHT11_sensor.humidity;
-  int new_temperature_air = (int)DHT11_sensor.temperature; 
-  int new_frostbite = DHT11_sensor.dewPoint();
-
-  if (checkBound(new_moisture_air, moisture_air, 1)) {
-      moisture_air = new_moisture_air;
-      Serial.print("New temperature:");
-      Serial.println(String(moisture_air).c_str());
-      client.publish("havaNem", String(moisture_air).c_str(), true);
-  }
-  
-  if (checkBound(new_temperature_air, temperature_air, 1)) {
-      temperature_air = new_temperature_air;
-      Serial.print("New temperature:");
-      Serial.println(String(temperature_air).c_str());
-      client.publish("havaIsi", String(temperature_air).c_str(), true);
-  }
-    
-  Serial.println(frostbite);
-}
-
-void moisture_soil_read(){
-  int new_moisture_soil = analogRead(A0);
-  if (checkBound(new_moisture_soil, moisture_soil, 1)) {
-      moisture_soil = new_moisture_soil;
-      Serial.print("New Moisture Soil:");
-      Serial.println(String(moisture_soil).c_str());
-      client.publish("toprakNem", String(moisture_soil).c_str(), true);
-  }
-}
-
-void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived in topic: ");
-  Serial.println(topic);
-  
-  String temp = topic;
-  String buff = "";
-  
-  if(temp.equals("motor")){
-    for (int i = 0; i<length; i++) {
-      buff += (char)payload[i];
-    }
-    Serial.println("Motor status is : " + buff);
-    if(buff.toInt() == 0 ){
-      digitalWrite(suMotoru_pin ,HIGH);
-    }else{
-      digitalWrite(suMotoru_pin ,LOW);
-    }
-  }
-  else if(temp.equals("led")){
-      for (int i = 0; i<length; i++) {
-        buff += (char)payload[i];
-      }
-      if(buff.equals("on"))
-        digitalWrite(2,LOW);
-      else
-        digitalWrite(2,HIGH);
-  }
- 
-  Serial.println();
-  Serial.println("-----------------------");
-}
-
-void setup(){
-  Serial.begin(115200);
-  pinMode(suMotoru_pin , OUTPUT);
-  pinMode(led,OUTPUT);
- //pinMode(buz, OUTPUT);
-
-  client.setServer(mqttServer, mqttPort);
-  client.setCallback(callback);
-  
-  setupWifi();
-  connectMqtt();
-  readTime = 0;
-}
- 
-void loop(){
-  if (!client.connected()) {
-    connectMqtt();
-  }
-  client.loop();
-
-  if(millis() > readTime+6000){
-    readTime = millis();
-    dhtRead();
-    moisture_soil_read();
-  //  sing();
-  }
-}
-/*
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
@@ -251,98 +93,248 @@ void loop(){
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-int melody[] = {
+int melody1[] = {
   NOTE_E7, NOTE_E7, 0, NOTE_E7,
   0, NOTE_C7, NOTE_E7, 0,
   NOTE_G7, 0, 0,  0,
-  NOTE_G6, 0, 0, 0,
- 
+  NOTE_G6, 0, 0, 0
+};
+int melody2[] = {
   NOTE_C7, 0, 0, NOTE_G6,
   0, 0, NOTE_E6, 0,
   0, NOTE_A6, 0, NOTE_B6,
-  0, NOTE_AS6, NOTE_A6, 0,
- 
-  NOTE_G6, NOTE_E7, NOTE_G7,
+  0, NOTE_AS6, NOTE_A6, 0
+};
+int melody3[] = { 
+  NOTE_G6, NOTE_E7, NOTE_G7, 0,
   NOTE_A7, 0, NOTE_F7, NOTE_G7,
   0, NOTE_E7, 0, NOTE_C7,
-  NOTE_D7, NOTE_B6, 0, 0,
- 
+  NOTE_D7, NOTE_B6, 0, 0
+ };
+ int melody4[] = {
   NOTE_C7, 0, 0, NOTE_G6,
   0, 0, NOTE_E6, 0,
   0, NOTE_A6, 0, NOTE_B6,
-  0, NOTE_AS6, NOTE_A6, 0,
- 
-  NOTE_G6, NOTE_E7, NOTE_G7,
+  0, NOTE_AS6, NOTE_A6, 0
+}; 
+
+int melody5[] = {
+  NOTE_G6, NOTE_E7, NOTE_G7, NOTE_G7,
   NOTE_A7, 0, NOTE_F7, NOTE_G7,
   0, NOTE_E7, 0, NOTE_C7,
   NOTE_D7, NOTE_B6, 0, 0
 };
 
-//Mario main them tempo
-int tempo[] = {
+int tempo1[] = {
   12, 12, 12, 12,
   12, 12, 12, 12,
   12, 12, 12, 12,
-  12, 12, 12, 12,
- 
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
- 
-  9, 9, 9,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
- 
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
- 
-  9, 9, 9,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
+  12, 12, 12, 12
 };
 
+int tempo2[] = {
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12
+ };
+ 
+ int tempo3[] = {
+  9, 9, 9, 9,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12
+ };
+ 
+ int tempo4[] = {
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12
+ };
+ 
+ int tempo5[] = {
+  9, 9, 9, 9,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12
+};
+
+int i=0;
+int j=0;
+int buztime =0;
+int delayvalue =0;
+ 
+const char* ssid = "ETUNET-asistan";
+const char* password = "tobb1234";
+
+const int plant_id = 1;
+const String plant_name = "menekşe";
+const String plant_type = "aerhurasia";
+int status_water_engine = 0;
+int moisture_air = 0;   // yüzde olarak veriyor
+int moisture_soil = 0;  // 0-1024 arası (yüzdeye çevirildi)
+int temperature_air = 0;  // celcius
+int frostbite = 0;   // çiğ oluşma noktası yüzde
+int light = 0;
+unsigned long readTime;
+
+#define DHT11_pin 4 // DHT11_pin olarak Dijital 2'yi belirliyoruz.
+#define suMotoru_pin 15
+#define led 2  // internal led
+#define buz 5
+
+const char* mqttServer = "m24.cloudmqtt.com";
+const int mqttPort = 16309;
+const char* mqttUser = "cissktzx";
+const char* mqttPassword = "ETUpXfdiWfMO";
+
+dht11 DHT11_sensor; // DHT11_sensor adında bir DHT11 nesnesi oluşturduk.
+WiFiClient espClient;
+PubSubClient client(espClient);
 
 
-void buzz(int targetPin, long frequency, long length) {
-  long delayValue = 1000000 / frequency / 2; // calculate the delay value between transitions
-  //// 1 second's worth of microseconds, divided by the frequency, then split in half since
-  //// there are two phases to each cycle
-  long numCycles = frequency * length / 1000; // calculate the number of cycles for proper timing
-  //// multiply frequency, which is really cycles per second, by the number of seconds to
-  //// get the total number of cycles to produce
-  for (long i = 0; i < numCycles; i++) { // for the calculated length of time...
-    digitalWrite(targetPin, HIGH); // write the buzzer pin high to push out the diaphram
-    delayMicroseconds(delayValue); // wait for the calculated delay value
-    digitalWrite(targetPin, LOW); // write the buzzer pin low to pull back the diaphram
-    delayMicroseconds(delayValue); // wait again or the calculated delay value
+
+void setupWifi(){
+ WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) 
+  {
+    delay(500);
+    Serial.print(".");
   }
+  Serial.println("");
+  Serial.println("WiFi connected"); 
 }
 
-void sing() {
-  //iterate over the notes of the melody:
+void connectMqtt(){
+    while (!client.connected()) {
+    Serial.println("Connecting to MQTT...");
+    if (client.connect("ESP8266Client", mqttUser, mqttPassword )) {
+      Serial.println("connected");  
+    } else {
+      Serial.print("failed with state ");
+      Serial.print(client.state());
+      delay(2000);
+    }
+  }
  
-    Serial.println(" 'Mario Theme'");
-    int size = sizeof(melody) / sizeof(int);
-    for (int thisNote = 0; thisNote < size; thisNote++) {
+  client.publish("test", "Hello from ESP8266");
+  client.subscribe("test");
+  client.subscribe("led");
+  client.subscribe("motor");
+}
+
+bool checkBound(int newValue, int prevValue, int maxDiff) {
+  return !isnan(newValue) &&
+         (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
+}
+
+void readSensor(){
+  DHT11_sensor.read(DHT11_pin);
+  int new_moisture_air = (int)DHT11_sensor.humidity;
+  int new_temperature_air = (int)DHT11_sensor.temperature; 
+  int new_frostbite = DHT11_sensor.dewPoint();
+  int new_moisture_soil = analogRead(A0);
+
+  String s = String(new_moisture_soil) +","+ new_moisture_air  +","+ new_temperature_air +","+ frostbite;
+  Serial.println(s.c_str());
+  client.publish("sensorler", s.c_str(), true);
+/*
+  if (checkBound(new_moisture_air, moisture_air, 1)) {
+      moisture_air = new_moisture_air;
+      Serial.print("New temperature:");
+      Serial.println(String(moisture_air).c_str());
+      client.publish("havaNem", String(moisture_air).c_str(), true);
+  }
+  
+  if (checkBound(new_temperature_air, temperature_air, 1)) {
+      temperature_air = new_temperature_air;
+      Serial.print("New temperature:");
+      Serial.println(String(temperature_air).c_str());
+      client.publish("havaIsi", String(temperature_air).c_str(), true);
+  }
+    
+  Serial.println(frostbite);
+  
+  if (checkBound(new_moisture_soil, moisture_soil, 1)) {
+      moisture_soil = new_moisture_soil;
+      Serial.print("New Moisture Soil:");
+      Serial.println(String(moisture_soil).c_str());
+      client.publish("toprakNem", String(moisture_soil).c_str(), true);
+  }
+  */
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Message arrived in topic: ");
+  Serial.println(topic);
+  
+  String temp = topic;
+  String buff = "";
+
+  if(temp.equals("motor")){
+    for (int i = 0; i<length; i++) {
+      buff += (char)payload[i];
+    }
+    Serial.println("Motor status is : " + buff);
+    if(buff.toInt() == 0 ){
+      digitalWrite(suMotoru_pin ,LOW);
+      sing(melody5, tempo5);
+    }else{
+      digitalWrite(suMotoru_pin ,HIGH);
+      sing(melody4, tempo4);
+    }
+  }
+  else if(temp.equals("led")){
+      for (int i = 0; i<length; i++) {
+        buff += (char)payload[i];
+      }
+      if(buff.equals("on"))
+        digitalWrite(2,LOW);
+      else
+        digitalWrite(2,HIGH);
+  }
  
-      // to calculate the note duration, take one second
-      // divided by the note type.
-      //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-      int noteDuration = 1000 / tempo[thisNote];
- 
-      buzz(buz, melody[thisNote], noteDuration);
- 
-      // to distinguish the notes, set a minimum time between them.
-      // the note's duration + 30% seems to work well:
-      int pauseBetweenNotes = noteDuration * 1.30;
-      delay(pauseBetweenNotes);
- 
-      // stop the tone playing:
-      buzz(buz, 0, noteDuration);
-    }*/
+  Serial.println();
+  Serial.println("-----------------------");
+}
+
+void setup(){
+  Serial.begin(115200);
+  pinMode(suMotoru_pin , OUTPUT);
+  pinMode(led,OUTPUT);
+  pinMode(buz, OUTPUT);
+
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(callback);
+  
+  setupWifi();
+  connectMqtt();
+  readTime = 0;
+}
+
+
+void sing(int melody[], int tempo[]){
+  i=0;
+  j=0;
+  
+  while(i < 16)
+    if(millis() > buztime + delayvalue){
+      buztime = millis();
+      delayvalue = 1000 / tempo[j] * 1.30;
+      tone(buz, melody[i++], 15* tempo[j++]);
+    }
+}
+
+void loop(){
+  if (!client.connected()) {
+    connectMqtt();
+  }
+  client.loop();
+
+  if(millis() > readTime+6000){
+    readTime = millis();
+    readSensor();
+//    sing(melody3, tempo3);
+  }
 }
