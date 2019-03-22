@@ -2,7 +2,7 @@
 
 <h1>What Is Smart Flowerpot ?</h1>
 <br>
-Smart Flowerpot is a project which has been designed within the course BIL496 Graduation Project under the topic of "Systems that makes house-life easier" by our team of 5 members. 
+Smart Flowerpot is a project which has been designed within the course BIL496 Graduation Project under the topic of "Systems that make house-life easier" by our team of 5 members. 
 <br>
 <br>
 <h3>Team Members :</h3>
