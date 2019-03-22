@@ -6,10 +6,15 @@
 Smart Flowerpot, BIL496 Bitirme Projesi dersi “Ev Hayatını Kolaylaştıran Sistemler” konusu kapsamında 5 kişilik takımımızla birlikte geliştirdiğimiz projedir.
 <br>
 Takım üyeleri :
+<br>
 1. Ömer Faruk Kurular 141101039
+<br>
 2. Bekir Berk Şenel 141101056
+<br>
 3. Musa Ünal 151101003
+<br>
 4. Mithat Kurt 111101033
+<br>
 5. Orhan Onar 131101063
 <br>
 Kullanıcının Android uygulaması üzerinden bitkisinin bulunduğu ortamdaki havanın anlık nem değerini, bitkisinin bulunduğu toprağın anlık nem değerini, ortamın anlık sıcaklık değerini ve buna benzer bilgileri kontrol edebildiği; aynı zamanda aplikasyon üzerinde tanımlı 73 adet bitki türünden istediği bitkiyi veya kendi bitkisini seçerek her bitki için önceden tanımlanmış optimal değerler üzerinden ortamdaki değerleri tanımlı verilerle kıyaslayan uygulamamız ile uyarı alabildiği ve aldığı uyarılara göre dilediği taktirde uzaktan kontrol ile tek tuşla sulama yapabildiği bir akıllı saksı sistemidir.
@@ -19,21 +24,36 @@ Uygulama tamamiyle kullanıcı dostu ve basit bir arayüz kullanılarak tasarlan
 <h1>Smart Flowerpot Projesinde Neler Kullanıldı ?</h1>
 <br>
 Donanım
+<br>
 - Nodemcu iOT kartı
+<br>
 - Arduino
+<br>
 - Blackboard
+<br>
 - Toprak nem sensörü
+<br>
 - Hava nem ısı sensörü
+<br>
 - Su motoru
+<br>
 - Buzzer
+<br>
 - Işık sensörü
 <br>
 Yazılım
+<br>
 - Android
+<br>
 - Mqtt server
+<br>
 - Arduino
+<br>
 - Html
+<br>
 - Php
+<br>
+- Javascript
 <br>
 <h1>Smart Flowerpot Projesi Nasıl Çalışır ?</h1>
 Projenin çalışma prensibi alttaki şekilde detaylı olarak gösterilmiştir.
