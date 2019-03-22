@@ -64,7 +64,7 @@
 #define NOTE_A5  880
 #define NOTE_AS5 932
 #define NOTE_B5  988
-#define NOTE_C6  1047
+#define NOTE_C6  1047             // Buzzer için gereken tanımlamalar.
 #define NOTE_CS6 1109
 #define NOTE_D6  1175
 #define NOTE_DS6 1245
@@ -105,7 +105,7 @@ int melody2[] = {
   0, NOTE_A6, 0, NOTE_B6,
   0, NOTE_AS6, NOTE_A6, 0
 };
-int melody3[] = { 
+int melody3[] = {                                   // Buzzer  ses paternleri
   NOTE_G6, NOTE_E7, NOTE_G7, 0,
   NOTE_A7, 0, NOTE_F7, NOTE_G7,
   0, NOTE_E7, 0, NOTE_C7,
@@ -142,7 +142,7 @@ int tempo2[] = {
  int tempo3[] = {
   9, 9, 9, 9,
   12, 12, 12, 12,
-  12, 12, 12, 12,
+  12, 12, 12, 12,                        // Ses paternleri.
   12, 12, 12, 12
  };
  
@@ -165,7 +165,7 @@ int j=0;
 int buztime =0;
 int delayvalue =0;
  
-const char* ssid = "ETUNET-asistan";
+const char* ssid = "ETUNET-asistan";                   //Senkronize çalışması için gereken  Wifi bağlantısı.
 const char* password = "tobb1234";
 
 const int plant_id = 1;
@@ -184,7 +184,7 @@ unsigned long readTime;
 #define led 2  // internal led
 #define buz 5
 
-const char* mqttServer = "m24.cloudmqtt.com";
+const char* mqttServer = "m24.cloudmqtt.com";               // Yeni eklediğimiz mqtt server ayarları.
 const int mqttPort = 16309;
 const char* mqttUser = "cissktzx";
 const char* mqttPassword = "ETUpXfdiWfMO";
@@ -197,7 +197,7 @@ PubSubClient client(espClient);
 
 void setupWifi(){
  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) 
+  while (WiFi.status() != WL_CONNECTED)                 // Wifi Bağlantısı için gereken metod.
   {
     delay(500);
     Serial.print(".");
@@ -208,7 +208,7 @@ void setupWifi(){
 
 void connectMqtt(){
     while (!client.connected()) {
-    Serial.println("Connecting to MQTT...");
+    Serial.println("Connecting to MQTT...");                                 // Mqtt bağlantısı için gereken tanımlamalar.
     if (client.connect("ESP8266Client", mqttUser, mqttPassword )) {
       Serial.println("connected");  
     } else {
@@ -229,10 +229,10 @@ bool checkBound(int newValue, int prevValue, int maxDiff) {
          (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
 }
 
-void readSensor(){
+void readSensor(){                // Sensörlerin çalışması için gereken metod.
   DHT11_sensor.read(DHT11_pin);
   int new_moisture_air = (int)DHT11_sensor.humidity;
-  int new_temperature_air = (int)DHT11_sensor.temperature; 
+  int new_temperature_air = (int)DHT11_sensor.temperature;                //Sensör tanımlalamarı
   int new_frostbite = DHT11_sensor.dewPoint();
   int new_moisture_soil = analogRead(A0);
 
@@ -266,7 +266,7 @@ void readSensor(){
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived in topic: ");
+  Serial.print("Message arrived in topic: ");                                       //MOTOR LED AYARLARI
   Serial.println(topic);
   
   String temp = topic;
@@ -301,7 +301,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 void setup(){
   Serial.begin(115200);
-  pinMode(suMotoru_pin , OUTPUT);
+  pinMode(suMotoru_pin , OUTPUT);                              //SU MOTORU SENKRONIZE CALISMASI ICIN GEREKEN METOD
   pinMode(led,OUTPUT);
   pinMode(buz, OUTPUT);
 
@@ -319,7 +319,7 @@ void sing(int melody[], int tempo[]){
   j=0;
   
   while(i < 16)
-    if(millis() > buztime + delayvalue){
+    if(millis() > buztime + delayvalue){                       //BUZZERIN CALISMASI ICIN GEREKEN METOD
       buztime = millis();
       delayvalue = 1000 / tempo[j] * 1.30;
       tone(buz, melody[i++], 15* tempo[j++]);
