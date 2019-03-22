@@ -68,16 +68,25 @@ Projenin çalışma prensibi alttaki şekilde detaylı olarak gösterilmiştir.
 <h2> Instructions of use </h2>
 
 <h4>1-First of all,you need main tools:
+ <br>
 - Arduino IDE
+ <br>
 - Suitable  microcontroller device
-- Blackboard microcontroller device
+ <br>
+- Blackboard
+ <br>
 - Basic soil humidity sensor
+ <br>
 - Basic air and soil sensor
+ <br>
 - Water engine
+ <br>
 - Buzzer
+ <br>
 - Light sensor
+ <br>
 - Suitable resistances 
- 
+ <br>
 <h4> 2- Build circuit from shared circuit pattern</h4>
 <h4> 3- Realize necessary changes. </h4>
 <h4> 3- Download an Arduiono Ide </h4>
