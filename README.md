@@ -64,3 +64,16 @@ Projenin çalışma prensibi alttaki şekilde detaylı olarak gösterilmiştir.
 
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema1.png" />
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Overall.png" />
+
+<h2> Instructions of use </h2>
+<h4> 1- Download project and open it in Android Studio or simple clone it in Androis Studio terminal </h4>
+<h4> 2- Realize necessary changes. </h4>
+<h4> 3- On build window, click on generate signed apk </h4>
+<h4> 4- Under key store path, click on create new </h4>
+<h4> 5- Fill the necessary fields </h4>
+<h4> 6- Choose build type "release" and then finish </h4>
+<h4> 7- Simply install apk on your mobile phone by finding apk and clicking on on your mobile phone </h4>
+
+<h2> Instructions of use (Direct apk)</h2>
+<h4> 1- Below find the link of apk </h4>
+<h4> 2- Simply install apk on your mobile phone by finding apk and clicking on on your mobile phone </h4>
