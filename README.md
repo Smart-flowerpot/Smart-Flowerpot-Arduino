@@ -1,4 +1,4 @@
-img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
 
 <h1>What Is Smart Flowerpot ?</h1>
 <br>
