@@ -18,20 +18,18 @@ Smart Flowerpot is a project which has been designed within the course BIL496 Gr
 5. Orhan Onar 131101063
 <br>
 <br>
-This is a system which allows the user to be aware of the momentary humidity, moisture of the solid which the plant grows in, the temperature of the environment etc.; also to choose a plant among 73 various ones, compare the momentary values to the optimal values 
-that have been obtained for each plant, and to be warned about the health of the plant under certain circumstances then act accordingly
+Smart Flowerpot is a system which allows the user to be aware of the momentary humidity, moisture of the solid which the plant grows in, the temperature of the environment etc.; also to choose a plant among 73 various ones, compare the momentary values to the optimal values that have been obtained for each plant and to be warned about the health of the plant under certain circumstances then act accordingly
 through remote access over the water engine by a button if wanted to.
 How To Use It ?
 Application has beeen designed over a friendly and simple interface. Clicking on the application will lead the user to HOME which has 
-a "+" button that allows the user to add his plant among the 73 pre-defined plants. After adding the plant to the system, the user is able to go back to the home through HOME, and clicking on that plant will allow the user to see the instantaneous values of it along with the option of watering it through "Water Me" button. Having optimal values of each plant, user will be warned under critical situations that threaten the health of the plant. (Figure 2)
-
+a "+" button that allows the user to add his plant among the 73 pre-defined plants. After adding the plant to the system, the user is able to go back to the home through HOME, and clicking on that plant will allow the user to see the instantaneous values of it along with the option of watering it through "Water Me" button. Having optimal values of each plant, user will be warned under critical situations that threaten the health of the plant.If the User uses the app correctly for the plant, user can win trophies for each accurate movement. (Figure 2)
 <h1>What Have Been Used In The Project Smart Flowerpot ?</h1>
 <br>
 <h3>Hardware</h3>
 <br>
-- Nodemcu IoT 
+- Nodemcu IoT microcontroller
 <br>
-- Arduino
+- Arduino IDE
 <br>
 - Breadboard
 <br>
