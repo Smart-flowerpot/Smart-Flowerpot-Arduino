@@ -3,7 +3,6 @@
 #include <ArduinoJson.h>
   
 
-//Sadece hava durumu tahminleri ciktisi veriliyor bu verileri ne yapacagimiza (ekran da goruntu veya isik gibi) karar verdigimiz zaman ana kodla degistirilecek.
 
 const char* ssid = "ETUNET-asistan";
 const char* password = "tobb1234";
@@ -167,7 +166,6 @@ void parseJson(const char * jsonString) {
   Serial.println();
 }
 
-// iflerin icine yapacagimiz islemleri ekleyecegiz suan sadece print mevcut
 
 void HavaDurumuTipi(String nowT, String later, String weatherType) {
 
@@ -178,14 +176,14 @@ void HavaDurumuTipi(String nowT, String later, String weatherType) {
   if (weatherType == "yagmurlu") { 
     if (indexNow == -1 && indexLater != -1) {
      
-      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor " + later);
+      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor.Bitkini sulamana gerek yok. " + later);
     }
   }
   // for snow
   else if (weatherType == "karli") {
     if (indexNow == -1 && indexLater != -1) {
      
-      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor " + later);
+      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor.Bitkini güvenli bir yerde saklamalısın. " + later);
     }
     
   }
@@ -193,14 +191,14 @@ void HavaDurumuTipi(String nowT, String later, String weatherType) {
   else if (weatherType == "dolu") { 
    if (indexNow == -1 && indexLater != -1) {
   
-      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor " + later);
+      Serial.println("Dikkat gorunuse gore" + weatherType + " bekleniyor.Bitkini güvenle bir yerde saklamalısın." + later);
    }
 
   }
   
   else {
     if (indexNow == -1 && indexLater != -1) {
-      Serial.println("Hava gunesli gozukuyor! Korkacak bir sey yok " + later);
+      Serial.println("Hava gunesli gozukuyor! Korkacak bir sey yok.Bitkini sulamayı unutma!" + later);
     
     }
   }
