@@ -105,7 +105,7 @@ int melody2[] = {
   0, NOTE_A6, 0, NOTE_B6,
   0, NOTE_AS6, NOTE_A6, 0
 };
-int melody3[] = {                                   // Buzzer  ses paternleri
+int melody3[] = {                                   // Buzzer   paternleri
   NOTE_G6, NOTE_E7, NOTE_G7, 0,
   NOTE_A7, 0, NOTE_F7, NOTE_G7,
   0, NOTE_E7, 0, NOTE_C7,
@@ -172,7 +172,7 @@ const int plant_id = 1;
  const String plant_name = "menekşe";
   const String plant_type = "aerhurasia";
 
-int status_water_engine = 0;
+int status_water_engine = 0;  //su motoru
 int moisture_air = 0;   // yüzde olarak veriyor
 int moisture_soil = 0;  // 0-1024 arası (yüzdeye çevirildi)
 int temperature_air = 0;  // celcius
@@ -182,11 +182,11 @@ int light = 0;
 unsigned long readTime;
 
 #define DHT11_pin 4 // DHT11_pin olarak Dijital 2'yi belirliyoruz.
-#define suMotoru_pin 15
+#define suMotoru_pin 15  
 #define led 2  // internal led
 #define buz 5
 
-const char* mqttServer = "m24.cloudmqtt.com";               // Yeni eklediğimiz mqtt server ayarları.
+const char* mqttServer = "m24.cloudmqtt.com";               // Yeni eklediğimiz mqtt server tanımlamaları.
   const int mqttPort = 16309;
     const char* mqttUser = "cissktzx";
       const char* mqttPassword = "ETUpXfdiWfMO";
@@ -212,7 +212,7 @@ void setupWifi()
 void connectMqtt()
 {
     while (!client.connected()) {
-    Serial.println("Connecting to MQTT...");                                 // Mqtt bağlantısı için gereken tanımlamalar.
+    Serial.println("Connecting to MQTT...");                                 // Mqtt bağlantısı için metod.
     if (client.connect("ESP8266Client", mqttUser, mqttPassword )) {
       Serial.println("connected");  
     } else {
@@ -221,7 +221,7 @@ void connectMqtt()
       delay(2000);
     }
   } 
-  client.publish("test", "Hello from ESP8266");
+  client.publish("test", "Hello from ESP8266"); 
   client.subscribe("test");
   client.subscribe("led");
   client.subscribe("motor");
@@ -235,10 +235,10 @@ bool checkBound(int newValue, int prevValue, int maxDiff) {
 void readSensor()
 {      
   
-                                                  // Sensörlerin çalışması için gereken metod.
+                                                  // Sensörlerin çalışması ve okunması için gereken metod.
   DHT11_sensor.read(DHT11_pin);
   int new_moisture_air = (int)DHT11_sensor.humidity;
-  int new_temperature_air = (int)DHT11_sensor.temperature;                //Sensör tanımlalamarı
+  int new_temperature_air = (int)DHT11_sensor.temperature;                //Sensör tanımlamaları
   int new_frostbite = DHT11_sensor.dewPoint();
   int new_moisture_soil = analogRead(A0);
 
@@ -255,12 +255,12 @@ void readSensor()
   
   if (checkBound(new_temperature_air, temperature_air, 1)) {
       temperature_air = new_temperature_air;
-      Serial.print("New temperature:");
+      Serial.print("New temperature:");                                          
       Serial.println(String(temperature_air).c_str());
       client.publish("havaIsi", String(temperature_air).c_str(), true);
   }
     
-  Serial.println(frostbite);
+  Serial.println(frostbite);           Kırağı
   
   if (checkBound(new_moisture_soil, moisture_soil, 1)) {
       moisture_soil = new_moisture_soil;
@@ -275,7 +275,7 @@ void callback(char* topic, byte* payload, unsigned int length)
 {
   
   
-  Serial.print("Message arrived in topic: ");                                       //MOTOR LED AYARLARI
+  Serial.print("Message arrived in topic: ");                                       //SU MOTORU DURUM
   Serial.println(topic);
   
   String temp = topic;
@@ -294,14 +294,14 @@ void callback(char* topic, byte* payload, unsigned int length)
     }
     else
     {
-      digitalWrite(suMotoru_pin ,HIGH);
+      digitalWrite(suMotoru_pin ,HIGH); 
       sing(melody4, tempo4);
     }
   }
   else if(temp.equals("led"))
   {
-      for (int i = 0; i<length; i++) {
-        buff += (char)payload[i];
+      for (int i = 0; i<length; i++) {               //LED 
+        buff += (char)payload[i]; 
       }
       if(buff.equals("on"))
         digitalWrite(2,LOW);
@@ -318,7 +318,7 @@ void setup()
   
   Serial.begin(115200);
   pinMode(suMotoru_pin , OUTPUT);   
-                                                //SU MOTORU SENKRONIZE CALISMASI ICIN GEREKEN METOD
+                                                //SU MOTORUNUN SENKRONIZE CALISMASI ICIN GEREKEN METOD
   pinMode(led,OUTPUT);
   pinMode(buz, OUTPUT);
 
