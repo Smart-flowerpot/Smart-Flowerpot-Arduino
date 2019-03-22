@@ -1,69 +1,37 @@
-# Smart-Flowerpot
-
-DONANIM
-
-- WiFi ile Json nesnesi gonderilmesi
-
-- Toprak için ısı ve nem sensörü
-
-https://www.robotistan.com/toprak-nemi-algilama-sensoru?query=toprak%20nem%20&
-
-https://www.robotistan.com/su-gecirmez-ds18b20-dijital-isi-sensoru?query=su%20gecirmez%20si%20sensoru&
-
-https://www.youtube.com/watch?v=gmkgLBfIw7w&ab_channel=TeknoButon
-
-- Su pompası ve basınç ve akış sensörü 
-
-https://www.roboshop.com.tr/mini-su-dalgic-pompasi?search=su%20pompasi
-
-https://www.roboshop.com.tr/su-sivi-akis-hizi-ve-hidrolik-basinc-sensoru?gclid=Cj0KCQiAsdHhBRCwARIsAAhRhsnTHuOh6ueY4CxzsxdyEfOLb3zeIwIGqV1Dkb6uqILj7HOSMgry8MUaAp4HEALw_wcB
-
-https://www.robotsepeti.com/su-akis-ve-hidrolik-basinc-sensoru
-
-https://www.youtube.com/watch?v=wB4gwXb9anI&ab_channel=ArduinoHaber
-
-DONANIM İÇİN EKLENTİLER
-
-- Led
-
-- Mini güneş paneli
-
-- Yağmur sensörü
-
-
-
-YAZILIM
-
-- Json nesnelerinin sunucudan çekilmesi
-
-- Arayuz
-
-- Verilerin işlenmesi
-
-** Android icin hem donanım hem de sunucu bağlantısı
-
-YAZILIM ICIN EKLENTILER
-
-- Oyunlaştırma ( Kullanici tarafindan yapilan/ yapilmayan eylemlerin odullendirilmesi/ cezalandirilmasi )
-
-- Analitik inceleme ( Cizelge olusturma vs.)
-
-- Alarm 
-
-- Ses ile konuşma emir verme (Amozon alexa veya google home gibi
-
-https://www.instructables.com/id/How-to-use-a-Serial-Voice-Recognition-Module-Ardui/
-
-SERVER
-
-- Json verilerinin saklanması
-
-
-<div align="center">
-<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema1.png" />
-<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema3.png" />
+﻿
 <img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Alternatif_Logo.png" />
 
-</div>
+Smart Flowerpot Nedir ?
+Smart Flowerpot, BIL496 Bitirme Projesi dersi “Ev Hayatını Kolaylaştıran Sistemler” konusu kapsamında 5 kişilik takımımızla birlikte geliştirdiğimiz projedir.
+Takım üyeleri :
+1. Ömer Faruk Kurular 141101039
+2. Bekir Berk Şenel 141101056
+3. Musa Ünal 151101003
+4. Mithat Kurt 111101033
+5. Orhan Onar 131101063
+Kullanıcının Android uygulaması üzerinden bitkisinin bulunduğu ortamdaki havanın anlık nem değerini, bitkisinin bulunduğu toprağın anlık nem değerini, ortamın anlık sıcaklık değerini ve buna benzer bilgileri kontrol edebildiği; aynı zamanda aplikasyon üzerinde tanımlı 73 adet bitki türünden istediği bitkiyi veya kendi bitkisini seçerek her bitki için önceden tanımlanmış optimal değerler üzerinden ortamdaki değerleri tanımlı verilerle kıyaslayan uygulamamız ile uyarı alabildiği ve aldığı uyarılara göre dilediği taktirde uzaktan kontrol ile tek tuşla sulama yapabildiği bir akıllı saksı sistemidir.
+Smart Flowerpot Uygulaması Nasıl Kullanılır ?
+Uygulama tamamiyle kullanıcı dostu ve basit bir arayüz kullanılarak tasarlanmıştır. Kullanıcı uygulamaya giriş yaptığında Home (Ana Sayfa) üzerinde “+” butonuna basarak önceden tanımlı 73 bitki türü içerisinden kendi bitkisini ekleyebilir. Bitki türlerinin önceden tanımlanmasının asıl amacı ilgili bitki türünün optimal değerlerinin önceden tanımlanmış olması ve gerekli değerlerin ortam koşullarınca sağlanmaması halinde kullanıcının uyarılabilmesidir. Kullanıcı bitkisini sisteme ekledikten sonra tekrar Home üzerinden bitkisinin bulunduğu butona basarak kendi bitkisine yönlendirilir. Böylece açılan sayfa üzerinden bitkisinin optimal değerlerini kontrol edebilir ve dilerse ”Water me” butonuna tıklayarak sulama işlemini gerçekleştirebilir. (Şekil 2)
+
+Smart Flowerpot Projesinde Neler Kullanıldı ?
+Donanım
+- Nodemcu iOT kartı
+- Arduino
+- Blackboard
+- Toprak nem sensörü
+- Hava nem ısı sensörü
+- Su motoru
+- Buzzer
+- Işık sensörü
+Yazılım
+- Android
+- Mqtt server
+- Arduino
+- Html
+- Php
+Smart Flowerpot Projesi Nasıl Çalışır ?
+Projenin çalışma prensibi Şekil 1’ de detaylı olarak gösterilmiştir.
 
 
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema1.png" />
+<img src="https://github.com/Smart-flowerpot/Smart-Flowerpot-Arduino/blob/master/Schema3.png" />
